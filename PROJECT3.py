@@ -1,30 +1,29 @@
-## Project title - Random Password Generator (Python)
+import random
+import string
 
-## Description
-This is a Python program that generates a random password based on the length provided by the user.
+def generate_password(length):
+    # Define possible characters: letters (upper + lower) and digits
+    characters = string.ascii_letters + string.digits
+    
+    # Generate random password
+    password = ''.join(random.choice(characters) for _ in range(length))
+    
+    return password
 
-The password includes a mix of letters and numbers to make it more secure.
+def main():
+    try:
+        length = int(input("Enter desired password length(eg: 8 characters): "))
+        
+        if length <= 0:
+            print("Please enter a positive number.")
+            return main()
+        
+        password = generate_password(length)
+        print("Generated Password:", password)
+    
+    except ValueError:
+        print("Invalid input.Please enter a number.")
+        return main()
 
-This project demonstrates:
-- Importing modules (`random`)
-- String manipulation
-- User input
-- Loops
-
-## How to Run
-
-1. Make sure Python is installed.
-
-2. Open terminal or command prompt.
-
-3. Navigate to the project folder:
-   cd <DECODELABS>
-
-4. Run the program:
-   python main.py
-
-## Example Usage
-
-Enter password length: 8  
-
-Generated Password: A7kP2xQ9
+if __name__ == "__main__":
+    main()
